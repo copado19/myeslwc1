@@ -1,4 +1,4 @@
-public with sharing class reservationManagerController {
+public with sharing class reservationManagementController {
     //Note: This is a sample, so we're using 'LIMIT' to simulate proper set/pagination controls
     @auraEnabled(cacheable=true)
     public static List<customerServices.Customer> getCustomerList(
