@@ -1,5 +1,13 @@
 import { LightningElement, api, wire  } from 'lwc';
 import getCustomerList from '@salesforce/apex/reservationManagementController.getCustomerList';
+import TILE_SELECTION_MC from '@salesforce/messageChannel/Tile_Selection__c';
+import {
+    subscribe,
+    unsubscribe,
+    APPLICATION_SCOPE,
+    MessageContext,
+    publish
+} from 'lightning/messageService';
 export default class CustomerList extends LightningElement {
     
     @api sobject = 'Lead';
@@ -8,6 +16,9 @@ export default class CustomerList extends LightningElement {
     errorMsg;
     msgForUser;
     wiredRecords;
+
+    @wire(MessageContext)
+    messageContext;
 
     @wire(getCustomerList, { sObjectType: '$sobject' })
     wiredCustomerData(value) {

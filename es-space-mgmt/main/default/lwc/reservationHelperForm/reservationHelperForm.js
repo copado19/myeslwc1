@@ -59,7 +59,7 @@ export default class reservationHelperForm extends LightningElement {
         this._endDays = event.detail.endDays;
         this._numberOfPeople = event.detail.numberOfPeople;
         this._requestedMarket = event.detail.requestedMarket;
-
+        
         const nextNavigationEvent = new FlowNavigationNextEvent();
         this.dispatchEvent(nextNavigationEvent);
     }
