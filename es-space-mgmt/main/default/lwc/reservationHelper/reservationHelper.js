@@ -2,6 +2,7 @@ import { LightningElement, api, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import TILE_SELECTION_MC from '@salesforce/messageChannel/Tile_Selection__c';
+import FLOW_STATUS_CHANGE_MC from '@salesforce/messageChannel/Flow_Status_Change__c';
 import {
     subscribe,
     unsubscribe,
@@ -62,4 +63,13 @@ export default class ReservationHelper extends LightningElement {
             }
         }
     } 
+    @api
+    handleFlowExit(event) {
+        const payload = {
+            flowName: 'createReservation',
+            status: 'FINISHED',
+            state: { sobjecttype: event.detail }
+        };
+        publish(this.messageContext, FLOW_STATUS_CHANGE_MC, payload);
+    }
 }
