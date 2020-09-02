@@ -34,6 +34,8 @@ export default class CustomerList extends LightningElement {
 
     handleSelect(event) {
         console.log(JSON.stringify(event.detail));
+        const payload = { tileType: 'customer', properties: event.detail };
+        publish(this.messageContext, TILE_SELECTION_MC, payload);
 
     }
     
